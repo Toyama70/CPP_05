@@ -6,7 +6,7 @@
 /*   By: yasinbestrioui <yasinbestrioui@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:04:53 by yasinbestri       #+#    #+#             */
-/*   Updated: 2022/04/14 20:09:42 by yasinbestri      ###   ########.fr       */
+/*   Updated: 2022/04/16 20:29:22 by yasinbestri      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iostream>
 #include <exception>
 #include "Exception.hpp"
+#include "Form.hpp"
 
 class Bureaucrat {
 
@@ -33,6 +34,7 @@ class Bureaucrat {
 
 	void			promoteGrade(const int rise);
 	void			demoteGrade(int low);
+	void			signForm(class Form& doc);// need to add class to make it recognized
 
 	private :
 	const std::string		_name;

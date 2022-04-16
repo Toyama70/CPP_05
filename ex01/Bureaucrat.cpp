@@ -6,7 +6,7 @@
 /*   By: yasinbestrioui <yasinbestrioui@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:24:40 by yasinbestri       #+#    #+#             */
-/*   Updated: 2022/04/14 20:09:50 by yasinbestri      ###   ########.fr       */
+/*   Updated: 2022/04/16 20:27:43 by yasinbestri      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,36 @@ void	Bureaucrat::promoteGrade(int low)
 		return;
 	}	
 	this->setGrade(getGrade() + low);
+}
+
+
+void	Bureaucrat::signForm(Form& doc)
+{
+	if (doc.getSignStatus() == 0 && getGrade() <= doc.getStampReq() && doc.getStampReq() <= 150)
+	{
+		std::cout << getName() << " signed " << doc.getName() << std::endl;
+		return;
+	}
+	else
+	{
+		std::cout << doc.getName() << " could not be signed ";
+		if (doc.getSignStatus() == 1)
+		{
+			std::cout << "because it is already signed" << std::endl;
+		}
+		else if (doc.getStampReq() > 150)
+		{
+			std::cout << "because its requirement is incorrect" << std::endl;
+		}
+		else if (doc.getStampReq() < getGrade())
+		{
+			std::cout << "because the bureaucrat is not authorized to" << std::endl;
+		}
+		else if (doc.getStampReq() < 1)
+		{
+			std::cout << "because its requirement is incorrect" << std::endl;
+		}
+	}
 }
 
 /* Overloads */

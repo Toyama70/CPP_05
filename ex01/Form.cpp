@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybestrio <ybestrio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yasinbestrioui <yasinbestrioui@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:57:05 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/04/15 14:18:49 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/04/16 20:26:12 by yasinbestri      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
 #include "Form.hpp"
 
 Form::Form()
@@ -22,15 +21,14 @@ Form::Form()
 
 Form::~Form()
 {
-	std::cout << "Default destructor" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 	return;
 }
 
 Form::Form(std::string name, const int stampReq, const int execReq)
 : _stampReq(stampReq), _execReq(execReq), _name(name), _signStatus(false)
 {
-	std::cout << "Copy Constructor" << std::endl;
-	
+	std::cout << "Constructor with arguments" << std::endl;
 	try
 	{
 		if (_stampReq > 150)
@@ -45,24 +43,17 @@ Form::Form(std::string name, const int stampReq, const int execReq)
 	catch(Exception_1& e) // this is the same as std::exception& e. cf struct;
 	{
 		std::cout << "Exception thrown: " << e.what() << std::endl;
-		delete this;
 		return;
 	}
 	catch(Exception_2& B) // this is the same as std::exception& e. cf struct;
 	{
 		std::cout << "Exception thrown: " << B.what() << std::endl;
-		//delete this;
 		return;
 	}	
-	
-	
-	
-	
-	
 	return;
 }
 
-Form::Form(const Form& other)
+Form::Form(Form& other)
 : _stampReq(other._stampReq), _execReq(other._execReq), _name(other._name)
 {
 	std::cout << "Assignment constructor" << std::endl;
@@ -92,4 +83,40 @@ bool		Form::getSignStatus()
 void	Form::setStatus(bool signStatus)
 {
 	this->_signStatus = signStatus;
+}
+
+void	Form::beSigned(Bureaucrat& signer)
+{
+	if (_signStatus == 1)
+	{
+		std::cout << getName() << " is already signed" << std::endl;
+		return ;
+	}
+	try
+	{
+		if(signer.getGrade() > getStampReq())
+			throw Exception_1();
+	}
+	catch(Exception_1& e)
+	{
+		std::cout << signer.getName() << " couldn't sign " << getName();
+		std::cout << " because : " << e.what() << std::endl;
+	}
+	if(signer.getGrade() <= this->getStampReq() && getStampReq() <= 150)
+	{
+		setStatus(1);
+		std::cout << getName() << " has been signed by " << signer.getName() << std::endl;
+		return;
+	}
+}
+
+/* Overloads */
+
+std::ostream    &operator<<(std::ostream & out, Form& form)
+{
+	std::cout <<  "Form name : " << form.getName() << std::endl;
+	std::cout << "Form sign level requirement: " << form.getStampReq() << std::endl;
+	std::cout << "Form execution level requirement: " << form.getExecReq() << std::endl;
+	std::cout << "Signature status = " << form.getSignStatus() << std::endl;
+	return out;
 }
