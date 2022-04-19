@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yasinbestrioui <yasinbestrioui@student.    +#+  +:+       +#+        */
+/*   By: ybestrio <ybestrio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 22:23:45 by yasinbestri       #+#    #+#             */
-/*   Updated: 2022/04/17 16:42:11 by yasinbestri      ###   ########.fr       */
+/*   Updated: 2022/04/19 15:17:24 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
 {
@@ -59,7 +60,13 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor)const
 	//std::cout << "Executing OK OK OK" << std::endl;
 	std::string outName = getTarget() + std::string("_shrubbery");
 	std::string output;
+	std::ofstream file1(outName);
+
+
+
 	output = " ^    ^ \n/ |  /|| \n/||  /|| \n_|_  _|_";
 
-	std::cout << output << std::endl;
+	file1 << output;
+
+	//std::cout << output << std::endl;
 }
