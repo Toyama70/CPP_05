@@ -6,7 +6,7 @@
 /*   By: yasinbestrioui <yasinbestrioui@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:57:05 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/04/16 20:26:12 by yasinbestri      ###   ########.fr       */
+/*   Updated: 2022/04/17 12:17:49 by yasinbestri      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,11 @@ void	Form::beSigned(Bureaucrat& signer)
 }
 
 /* Overloads */
+
+Form& Form::operator=(const Form& rhs)
+{
+	return *this;
+}
 
 std::ostream    &operator<<(std::ostream & out, Form& form)
 {
