@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yasinbestrioui <yasinbestrioui@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 18:29:13 by yasinbestri       #+#    #+#             */
-/*   Updated: 2022/04/19 18:32:04 by yasinbestri      ###   ########.fr       */
+/*   Created: 2022/04/19 19:22:55 by yasinbestri       #+#    #+#             */
+/*   Updated: 2022/04/19 20:17:27 by yasinbestri      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIAL_PARDON_FORM_HPP
-#define PRESIDENTIAL_PARDON_FORM_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
 #include <string>
 #include <iostream>
@@ -19,16 +19,20 @@
 #include "Exception.hpp"
 #include "Form.hpp"
 
-class PresidentialPardonForm : public Form {
-	public :
-	PresidentialPardonForm();
-	PresidentialPardonForm(std::string name);
-	~PresidentialPardonForm();
-	PresidentialPardonForm(PresidentialPardonForm& other);
-	PresidentialPardonForm& operator=(const PresidentialPardonForm& rhs);
+class Intern {
 
-	virtual void	execute(const class Bureaucrat& executor) const;
-	virtual void 	getAbstract();
+	public :
+	Intern();
+	Intern(std::string name);
+	~Intern();
+	Intern(Intern& other);
+	Intern& operator=(const Intern& rhs);
+	
+	Form*	makeForm(std::string formName, std::string target);
+	Form*	shrubs(std::string target);
+	Form*	robots(std::string target);
+	Form*	prez(std::string target);
 } ;
+
 
 #endif

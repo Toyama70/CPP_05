@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Exception.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yasinbestrioui <yasinbestrioui@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 18:04:11 by yasinbestri       #+#    #+#             */
-/*   Updated: 2022/04/19 18:07:14 by yasinbestri      ###   ########.fr       */
+/*   Created: 2022/04/14 19:19:16 by yasinbestri       #+#    #+#             */
+/*   Updated: 2022/04/17 16:24:00 by yasinbestri      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMY_REQUEST_FORM_HPP
-#define ROBOTOMY_REQUEST_FORM_HPP
+#ifndef EXCEPTION_HPP
+#define EXCEPTION_HPP
 
 #include <string>
 #include <iostream>
 #include <exception>
-#include "Exception.hpp"
-#include "Form.hpp"
 
-class RobotomyRequestForm : public Form {
-	public :
-	RobotomyRequestForm();
-	RobotomyRequestForm(std::string name);
-	~RobotomyRequestForm();
-	RobotomyRequestForm(RobotomyRequestForm& other);
-	RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
+struct Exception_1 : public std::exception {
+	const char * what() const throw() {
+	return ("Grade too low");
+	}
+};
 
-	virtual void	execute(const class Bureaucrat& executor) const;
-	virtual void 	getAbstract();
-} ;
 
+struct Exception_2 : public std::exception {
+	const char * what() const throw() {
+	return ("Grade too high");
+	}
+};
 
 #endif
